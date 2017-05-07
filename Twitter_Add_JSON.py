@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import os, datetime
+import os
 import tweepy
-import json
 from tweepy import OAuthHandler
-from tweepy import Stream
 from tweepy.streaming import StreamListener
+import subprocess
+from twitter_set import twitter_api_set
 
 class MyStreamListener(tweepy.StreamListener):
 	def __init__(self,location):
@@ -27,15 +27,7 @@ class MyStreamListener(tweepy.StreamListener):
 		return True
 
 if __name__=="__main__":
-	#gets the twitter keys from the enviromental variables
-	consumer_key = os.environ['TWITTER_KEY']
-	consumer_secret =os.environ['TWITTER_SECRET']
-	access_token =os.environ['TWITTER_ACCESS']
-	access_secret =os.environ['TWITTER_ACCESS_SECRET']
-	#sets up everthing
-	auth = OAuthHandler(consumer_key, consumer_secret)
-	auth.set_access_token(access_token, access_secret)
-	api = tweepy.API(auth)
+	api = twitter_api_set()
 	##Location you want to write to
 	location="tweeter_data.json"
 	#how many tweets do you want

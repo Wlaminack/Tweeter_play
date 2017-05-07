@@ -7,7 +7,7 @@ import json
 from tweepy import OAuthHandler
 from tweepy import Stream
 from tweepy.streaming import StreamListener
-import subprocess
+from twitter_set import twitter_api_set
 import Queue
 from threading import Thread
 from sqlalchemy.ext.declarative import declarative_base
@@ -88,16 +88,7 @@ class Stream_To_sql(tweepy.StreamListener):
         return True
 
 if __name__=="__main__":
-	#gets the twitter keys from the enviromental variables
-	consumer_key = os.environ['TWITTER_KEY']
-	consumer_secret =os.environ['TWITTER_SECRET']
-	access_token =os.environ['TWITTER_ACCESS']
-	access_secret =os.environ['TWITTER_ACCESS_SECRET']
-	#sets up everthing
-	auth = OAuthHandler(consumer_key, consumer_secret)
-	auth.set_access_token(access_token, access_secret)
-	api = tweepy.API(auth)
-	##Location you want to write to
+	api = twitter_api_set()
 	location="twitter.db"
 
 	engine = create_engine('sqlite:///'+location)
