@@ -35,6 +35,7 @@ if __name__=="__main__":
 	#sets up everthing
 	auth = OAuthHandler(consumer_key, consumer_secret)
 	auth.set_access_token(access_token, access_secret)
+	api = tweepy.API(auth)
 	##Location you want to write to
 	location="tweeter_data.json"
 	#how many tweets do you want
