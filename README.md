@@ -5,7 +5,7 @@ The first is to write the tweets to a json file. This is the Twitter_Add_JSON.py
 The second is to write the tweets to a relational db. This is done in the Twitter_Add_SQL.py file.
 These are two simple files for downloading data from the twitter data stream.
 
-#Documentation
+# Documentation
 In order to do use the programes, you have to setup 4 envromental variables
 ['TWITTER_KEY']
 ['TWITTER_SECRET']
