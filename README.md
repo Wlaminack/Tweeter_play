@@ -7,10 +7,10 @@ These are two simple files for downloading data from the twitter data stream.
 
 # Documentation
 In order to do use the programes, you have to setup 4 envromental variables
-['TWITTER_KEY']
-['TWITTER_SECRET']
-['TWITTER_ACCESS']
-['TWITTER_ACCESS_SECRET']
+* ['TWITTER_KEY']
+* ['TWITTER_SECRET']
+* ['TWITTER_ACCESS']
+* ['TWITTER_ACCESS_SECRET']
 
 With the access keys provided by twitter for your application
 If you really don't want to set up the evniromental variables you can just change the twitter_set.py, but this is not recomended.
