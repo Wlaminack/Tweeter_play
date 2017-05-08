@@ -4,7 +4,6 @@
 import os, datetime
 import tweepy
 import json
-from tweepy import OAuthHandler
 from tweepy import Stream
 from tweepy.streaming import StreamListener
 from twitter_set import twitter_api_set
@@ -89,9 +88,9 @@ class Stream_To_sql(tweepy.StreamListener):
 
 if __name__=="__main__":
 	api = twitter_api_set()
-	location="twitter.db"
+	location="sqlite:///twitter.db"
 
-	engine = create_engine('sqlite:///'+location)
+	engine = create_engine(location)
 	#make sure the tables are created
 	Base.metadata.create_all(engine)
 	Session = sessionmaker(bind=engine)
@@ -102,13 +101,13 @@ if __name__=="__main__":
 	#starts up the 
 	lines=0
 	while lines<max_tweets:
-		
-		myStream = tweepy.Stream(auth = api.auth, listener=Stream_To_sql(Session,Twitter,Tweeter_to_sql))
-		# trackes only english language posts and anything with "ts" and "i"
-		#this is only a sample 
-
-		myStream.filter(languages=['en'],track=["ts","i"])
-		
+		try:
+			myStream = tweepy.Stream(auth = api.auth, listener=Stream_To_sql(Session,Twitter,Tweeter_to_sql))
+			# trackes only english language posts and anything with "ts" and "i"
+			#this is only a sample 
+			myStream.filter(languages=['en'],track=["ts","i"])
+		except:
+			print("break")
 		
 		#at a break in the twitter issue count the number of rows in the db
 		lines = session.query(Twitter).count()
